@@ -23,7 +23,7 @@ def create_schema_string(df, table_name):
         schema.append({
             "name": column,
             "type": column_type,
-            "description": ""  # You can add descriptions if needed
+            "description": ""  # You need to add the description
         })
     
     table_data = {
