@@ -96,8 +96,8 @@ def get_clear():
 
 
 def parse_data(response2):
-        zzz = response2.automatic_function_calling_history[2].parts[0].function_response.response
-        result_string = zzz['result']
+        to_parse = response2.automatic_function_calling_history[2].parts[0].function_response.response
+        result_string = to_parse['result']
         json_string = result_string.replace('```json\n', '').replace('\n', '').replace('```', '').strip()
         try:
             result_dict = json.loads(json_string)
@@ -237,13 +237,12 @@ def get_chart(data, charttype):
             st.write("The second column must contain numeric data for the pie chart values.")
             st.stop()
         else:
-            # Create the pie chart using column indices
-            plt.figure(figsize=(8, 8)) # Make it a square for a proper circle
+            plt.figure(figsize=(8, 8)) 
             labels = dfa.iloc[:, 0]
             sizes = dfa.iloc[:, 1]
             plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140)
             plt.title(f"Distribution of {dfa.columns[1]} by {dfa.columns[0]}")
-            plt.axis('equal') # Equal aspect ratio ensures that pie is drawn as a circle.
+            plt.axis('equal') 
             plt.tight_layout()
             st.pyplot(plt.gcf())
     elif charttype == "Line":
@@ -254,7 +253,6 @@ def get_chart(data, charttype):
             st.write("The second column must contain numeric data for the line chart values.")
             st.stop()
         else:
-            # Create the line chart using column indices
             plt.figure(figsize=(10, 6))
             plt.plot(dfa.iloc[:, 0], dfa.iloc[:, 1], marker='o', linestyle='-')
             plt.xlabel(dfa.columns[0])
@@ -268,8 +266,8 @@ def get_chart(data, charttype):
 
 
 def main():
-    filename = st.sidebar.file_uploader("Choose a CSV file", type=['csv'])
-    if filename is not None:
+    filename = st.sidebar.text_input("Provide path to CSV file:")
+    if filename:
         df = pd.read_csv(filename)
         t_name = json.loads(schema2)
         table_name = t_name['table'][0]['table_name']
