@@ -6,6 +6,9 @@ Primary thing I learned was that providing field decsription helps.  Use the cod
 
 Text to SQL is still a challenging task, even when using a powerful model like Gemini 2.0.  So if your code errors out, try playing around with your prompt.  Also, play around with sys_message in get_query function to improve query creation.  Think about the right examples to provide in sys_message tailored to your file and needs.
 
+I am providing the loans payments csv file as well, so you can run my code as is by using this file...Might be a good idea to start with that, because it should work...then, try it with your CSV file but make sure to adjust the schema.
+
+
 Good luck!  Hope you take what I started and make it even better!!!
 
 Please consider give this repo a star if you found my code/video helpful.
