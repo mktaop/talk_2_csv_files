@@ -197,16 +197,16 @@ def get_query(prompt: str) -> str:
 
 
 def execute_query_tool(query: str) -> str:
-    """Execute a SQL query against BigQuery and return the results as a JSON string."""
+    """Execute a SQL query against Sqlite3 and return the results as a JSON string."""
 
     try:
       result = pd.read_sql_query(query, conn)
       data = str(json.dumps(result.to_string()))
       return data
     except Exception as e:
-      error_message = f"BigQuery Error: {str(e)}"
+      error_message = f"Sqlite Query Error: {str(e)}"
       st.stop()
-      return json.dumps({"BigQuery error": error_message})
+      return json.dumps({"Sqlite Query error": error_message})
   
 
 def get_chart(data, charttype):
